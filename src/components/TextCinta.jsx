@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const TextCinta = () => {
   const [displayedText, setDisplayedText] = useState("");
+  const textRef = useRef(null);
   const text = `happy birthday mas
 semoga di umur yang ke 24 tahun ini mas di limpahkan banyak kebahagiaan ya. mungkin di tahun lalu begitu banyak badai yang mas tempuh dan mas lalui sendiri.
 aca bangga dengan mas udah bertahan sejauh ini.
@@ -16,12 +17,12 @@ aamiin.
 jangan lupa untuk doakan mama ya mas, 
 karna di tanggal ini, mama mas sedang bertaruh nyawa untuk melahirkan mas.
 mama mas hebat, mama mas baik, baikk bangettttt. 
-mas beruntung lahir dari rahim wanita yang baik, dan sayang banget sama mas 🥰.
+mas beruntung lahir dari rahim wanita yang baik, dan sayang banget sama mas.
 jangan pernah tinggalkan solat ya mas, sesibuk apapun mas. 
 ga bosan aca ucapin maaf dan makasih untuk mas.
 maafin aca ya mas selama kita kenal, kalo aca ga baik, aca minta maaf.
 dan makasih mas udah pernah hadir di hidup aca, mas baik banget, aca bersyukur kenal mas. terimakasih ya mas.
-sekali lagi happy birthday muhammad muammar💖`;
+sekali lagi happy birthday muhammad muammar🤍`;
 
   useEffect(() => {
     let index = 0;
@@ -38,6 +39,11 @@ sekali lagi happy birthday muhammad muammar💖`;
       setDisplayedText((prev) => prev + nextChar);
 
       index++;
+
+      // Scrol otomatis ke bawah setiap karakter baru ditambahkan
+      if (textRef.current) {
+        textRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }, 50); // Kecepatan mengetik (ms)
 
     return () => clearInterval(interval); // Membersihkan interval saat komponen unmount
@@ -46,6 +52,7 @@ sekali lagi happy birthday muhammad muammar💖`;
   return (
     <div className="container text-cinta">
       <p className="text-justify">{displayedText}</p>
+      <div className='display-text' ref={textRef}></div>
     </div>
   );
 };

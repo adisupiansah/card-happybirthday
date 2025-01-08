@@ -21,12 +21,11 @@
 
   /* COMPONENTS JUDUL */
   .judul{
-    margin-top: 4rem;
+    padding-top: 4rem;
   }
   .judul h1{
     font-size: 28px;
     font-weight: 600;
-    font-style: italic;
     margin-bottom: 1rem;
   }
 
@@ -47,8 +46,8 @@
     font-size: 18px;
     font-weight: 500;
   }
-
-
+  
+  
 }
 
 
